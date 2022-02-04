@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8"> -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <style>
+        body * {
+            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            /* border: 1px solid blue; */
+        }
+        body {
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: 3;
+            grid-template-areas: 
+            'header header header'
+            '. . .'
+            '. ul .'
+            '. . .'
+            'form . .'
+            'form . .'
+            '. . .'
+            'legend . .';
+            grid-auto-rows: minmax(50px, auto);
+            align-items: center;
+            justify-items: center;
+        }
+
+        h1 {
+            grid-area: header;
+            text-shadow: 3px 3px 5px rgba(63, 107, 169, 0.323)
+        }
+
+        .interactive {
+            color: crimson;
+        }
+
+        .todo {
+            color:blueviolet;
+        }
+
+        .list {
+            color: rgb(14, 50, 104);
+        }
+
+        ul {
+            margin-top: 0px;
+            padding: 0;
+            grid-area: ul;
+            /* list-style-image: image-set(); */
+            justify-self: left;
+        }
+
+        form {
+            grid-area: form;
+            display: grid;
+            grid-gap: 5px;
+            grid-template-areas:
+            'text'
+            'button';
+        }
+
+        input[type='text'] {
+            grid-area: text;
+            border-radius: 5px;
+        }
+
+        input[type='button'] {
+            grid-area: button;
+        }
+
+        #legend {
+            padding: 10px;
+            justify-self: left;
+            grid-area: legend;
+            font-size: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <span class='interactive'>Interactive</span>
+        <span class="todo">ToDo</span>
+        <span class="list">List</span>
+    </h1>
+
+    <ul></ul>
+
+    <form action="">
+        <input type="text" name="text" id="todo" placeholder='Enter ToDo Here'>
+        <input type="button" value="Click to Add" id='button'>
+    </form>
+
+    <div id='legend'>
+        <div id='click'>Click - Strike-through</div>
+        <div id="dblclick">Double Click - Remove</div>
+    </div>
+</body>
+
+<script>
+    const ul = document.querySelector('ul');
+    const text = document.querySelector('#todo');
+    const button = document.querySelector('#button');
+    const form = document.querySelector('form');
+
+    button.addEventListener('click', () => {
+        if (text.value == '') {
+            alert('CANNOT ADD EMPTY TODO!!!')
+        } else {
+            const li = document.createElement('li');
+            li.innerText = text.value;
+            ul.appendChild(li);
+            text.value = ''
+        }
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (text.value == '') {
+            alert('CANNOT ADD EMPTY TODO!!!')
+        } else {
+            const li = document.createElement('li');
+            li.innerText = text.value;
+            ul.appendChild(li);
+            text.value = ''
+        }
+    });
+
+    ul.addEventListener('dblclick', e => {
+        if (e.target.tagName == 'LI') {
+            e.target.remove();
+        }
+    });
+
+    ul.addEventListener('click', e => {
+        if (e.target.tagName == 'LI') {
+            e.target.style.textDecoration = 'line-through';
+        }
+    });
+</script>
+</html>
