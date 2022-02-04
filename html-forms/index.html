@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form</title>
+</head>
+<body>
+    <header>
+        <img src="img/logo.png" alt="">
+    </header>
+
+    <form action="">
+        <!-- Gender -->
+        <p>You are a...</p>
+
+        <input type="radio" id='male' name='gender'>
+        <label for="male">Male</label>
+        <br>
+
+        <input type="radio" id="female" name="gender">
+        <label for="female"> Female</label>
+
+        <!-- Interests -->
+        <p>who is interested in...</p>
+
+        <input type="checkbox" id='web'>
+        <label for="web">Web Dev</label>
+        <br>
+
+        <input type="checkbox" id="photoshop">
+        <label for="photoshop">Photoshop</label>
+        <br>
+
+        <input type="checkbox" id="pizza">
+        <label for="pizza">Eating Pizza</label>
+        <br>
+
+        <!-- Contact Details -->
+        <fieldset>
+            <legend>Contact Info</legend>
+
+            <input type="email" placeholder="email" required>
+            <span class="tick"></span>
+
+            <input type="tel" placeholder="phone number" required>
+            <span class="tick"></span>
+        </fieldset>
+
+        <!-- Preferred -->
+        <p>How would you like to be contacted?</p>
+        <select>
+            <option>By Email</option>
+            <option value="">By Telephone</option>
+        </select>
+        <br>
+        <br>
+
+        <input type="submit" value="Become a Ninja!">
+    </form>
+</body>
+</html>
