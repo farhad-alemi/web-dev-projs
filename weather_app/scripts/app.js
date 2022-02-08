@@ -40,12 +40,12 @@ function updateUI(data) {
         <div id='feels-like' class='text-muted fst-italic'>Feels Like ${data.current.feelslike_c} &deg;C</div>
     
         <div id='aq'>
-            <p>CO: ${aq.co}<p>
-            <p>NO<sub>2</sub>: ${aq.no2}<p>
-            <p>O<sub>3</sub>: ${aq.o3}</p>
-            <p>SO<sub>2</sub>: ${aq.so2}</p>
-            <p>PM<sub>2.5</sub>: ${aq.pm2_5}</p>
-            <p>PM<sub>10</sub>: ${aq.pm10}</p>
+            <p>CO: ${Math.round(aq.co * 1000) / 1000}<p>
+            <p>NO<sub>2</sub>: ${Math.round(aq.no2 * 1000) / 1000}<p>
+            <p>O<sub>3</sub>: ${Math.round(aq.o3 * 1000) / 1000}</p>
+            <p>SO<sub>2</sub>: ${Math.round(aq.so2 * 1000) / 1000}</p>
+            <p>PM<sub>2.5</sub>: ${Math.round(aq.pm2_5 * 1000) / 1000}</p>
+            <p>PM<sub>10</sub>: ${Math.round(aq.pm10 * 1000) / 1000}</p>
             <p>US EPA Index: ${aq["us-epa-index"]}</p>
             <p>GB Defra Index: ${aq["gb-defra-index"]}</p>
         </div>
