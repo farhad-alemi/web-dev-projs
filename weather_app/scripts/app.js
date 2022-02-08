@@ -9,14 +9,8 @@ locationForm.addEventListener('submit', function (e) {
 
     /* Get City Name */
     const cityName = locationForm.city.value.trim();
-
-    /* Update the UI with New City */
-    updateCity(cityName).then(function (data) {
-        updateUI(data);
-    }).catch(function (err) {
-        console.log('Error Caught:', err);
-    });
-
+    updateCityHandler(cityName);
+    
     locationForm.reset();
 });
 
@@ -26,8 +20,6 @@ async function updateCity(city) {
 
 function updateUI(data) {
     const aq = data.current.air_quality;
-    //todo
-    console.log(data)
     timeIcon.setAttribute('src', data.current.is_day ? 'img/day.svg' : 'img/night.svg');
     weatherIcon.setAttribute('src', data.current.condition.icon);
 
@@ -53,4 +45,17 @@ function updateUI(data) {
     </div>`;
 
     card.classList.remove('d-none');
+}
+
+function updateCityHandler(cityName) {
+    updateCity(cityName).then(function (data) {
+        localStorage.city = cityName;
+        updateUI(data);
+    }).catch(function (err) {
+        console.log('Error Caught:', err);
+    });
+}
+
+if (localStorage.getItem('city')) {
+    updateCityHandler(localStorage.getItem('city'));
 }

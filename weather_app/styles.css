@@ -9,15 +9,19 @@ body {
 }
 
 #feels-like {
-    font-size: 0.4em;
+    font-size: max(12px, 1vw);
 }
 
 .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    top: -30px;
+    bottom: 40px;
     border-radius: 50%;
-    width: 100px;
-    margin-bottom: -50px;
+    height: 80px;
+    width: 80px;
+    box-shadow: 2px 2px 5px gray;
 }
 
 #aq {
