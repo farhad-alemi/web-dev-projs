@@ -3,6 +3,7 @@ const card = document.querySelector('.card');
 const details = document.querySelector('.details');
 const timeIcon = document.querySelector('img.time');
 const weatherIcon = document.querySelector('.icon img');
+const forecast = new Forecast();
 
 locationForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -10,12 +11,21 @@ locationForm.addEventListener('submit', function (e) {
     /* Get City Name */
     const cityName = locationForm.city.value.trim();
     updateCityHandler(cityName);
-    
+
     locationForm.reset();
 });
 
-async function updateCity(city) {
-    return await getCityWeather(city);
+if (localStorage.getItem('city')) {
+    updateCityHandler(localStorage.getItem('city'));
+}
+
+function updateCityHandler(cityName) {
+    forecast.updateCity(cityName).then(function (data) {
+        localStorage.city = cityName;
+        updateUI(data);
+    }).catch(function (err) {
+        console.log('Error Caught:', err);
+    });
 }
 
 function updateUI(data) {
@@ -45,17 +55,4 @@ function updateUI(data) {
     </div>`;
 
     card.classList.remove('d-none');
-}
-
-function updateCityHandler(cityName) {
-    updateCity(cityName).then(function (data) {
-        localStorage.city = cityName;
-        updateUI(data);
-    }).catch(function (err) {
-        console.log('Error Caught:', err);
-    });
-}
-
-if (localStorage.getItem('city')) {
-    updateCityHandler(localStorage.getItem('city'));
 }
